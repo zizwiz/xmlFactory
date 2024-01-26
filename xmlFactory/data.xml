@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<compliance_data>
+	<aircraft_info>
+		<aircraft_name>Default</aircraft_name>
+		<AftMomentArm>950</AftMomentArm>
+		<FwdMomentArm>400</FwdMomentArm>
+		<AftCGLimit>560</AftCGLimit>
+		<FwdCGLimit>350</FwdCGLimit>
+	</aircraft_info>
+	<aircraft_info>
+		<aircraft_name>Maximus</aircraft_name>
+		<AftMomentArm>900</AftMomentArm>
+		<FwdMomentArm>410</FwdMomentArm>
+		<AftCGLimit>540</AftCGLimit>
+		<FwdCGLimit>360</FwdCGLimit>
+	</aircraft_info>
+	<aircraft_info>
+		<aircraft_name>Minimus</aircraft_name>
+		<AftMomentArm>960</AftMomentArm>
+		<FwdMomentArm>420</FwdMomentArm>
+		<AftCGLimit>520</AftCGLimit>
+		<FwdCGLimit>310</FwdCGLimit>
+	</aircraft_info>
+</compliance_data>
