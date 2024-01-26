@@ -28,16 +28,24 @@ namespace xmlFactory
 
             Text += " : v" + Assembly.GetExecutingAssembly().GetName().Version; // put in the version number
 
-            PopulateComplianceDataCmboBx(); //Add aircraft names to combobox
+            PopulateComplianceDataCmboBx("Default"); //Add aircraft names to combobox
+
+            LoadxmlDatatoRchtxtbx(); //load the xml file data to richtextbox
 
             grpbx_aircraftname_combobx.Visible = true;
             grpbx_aircraftname_new.Visible = false;
         }
 
+        private void LoadxmlDatatoRchtxtbx()
+        {
+            rchtxbx_xmlfile_output.Text = "";
+            rchtxbx_xmlfile_output.LoadFile("data.xml", RichTextBoxStreamType.PlainText);
+        }
+
         /// <summary>
         /// Populate the combobox in the compliance data from the xml file.
         /// </summary>
-        private void PopulateComplianceDataCmboBx()
+        private void PopulateComplianceDataCmboBx(string myAircraftName)
         {
             cmbobx_aircraftName.Items.Clear();
 
@@ -51,9 +59,19 @@ namespace xmlFactory
                 cmbobx_aircraftName.Items.Add(aircraft["aircraft_name"].InnerText);
             }
 
-            cmbobx_aircraftName.SelectedIndex = 0;
+            if (!cmbobx_aircraftName.Items.Contains(myAircraftName))
+            {
+                cmbobx_aircraftName.SelectedIndex = 0;
+            }
+            else
+            {
+                cmbobx_aircraftName.SelectedText = myAircraftName;
+            }
+            
 
             GetData(cmbobx_aircraftName.Text);
+
+            LoadxmlDatatoRchtxtbx(); //show updated xml file in richtextbox
         }
 
         private void GetData(string myAircraftName)
@@ -169,15 +187,10 @@ namespace xmlFactory
             return result;
         }
 
-        private void btn_save_Click(object sender, EventArgs e)
-        {
-            SaveData(lbl_new_aircraft.Text);
-        }
-
         private void SaveData(string myAircraftName)
         {
             AddData(myAircraftName);
-            PopulateComplianceDataCmboBx();
+            PopulateComplianceDataCmboBx(myAircraftName);
 
             cmbobx_aircraftName.SelectedIndex = cmbobx_aircraftName.Items.Count - 1;
             grpbx_aircraftname_combobx.Visible = true;
@@ -186,9 +199,10 @@ namespace xmlFactory
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
-            DeleteData(cmbobx_aircraftName.Text);
+            string myAircraftName = cmbobx_aircraftName.Text;
+            DeleteData(myAircraftName);
 
-            PopulateComplianceDataCmboBx();
+            PopulateComplianceDataCmboBx(myAircraftName);
             cmbobx_aircraftName.SelectedIndex = 0;
         }
 
@@ -258,7 +272,7 @@ namespace xmlFactory
                 doc.Element("compliance_data").Add(root);
                 doc.Save("data.xml");
 
-                PopulateComplianceDataCmboBx(); //rebuild the combobox
+                PopulateComplianceDataCmboBx(myAircraftName); //rebuild the combobox
 
                 cmbobx_aircraftName.SelectedIndex = cmbobx_aircraftName.Items.Count - 1;
 
@@ -280,7 +294,7 @@ namespace xmlFactory
 
                 if (File.Exists("Data.xml")) File.Delete("Data.xml");
                 File.WriteAllText("data.xml", Resources.data);
-                PopulateComplianceDataCmboBx();
+                PopulateComplianceDataCmboBx("Default");
                 cmbobx_aircraftName.SelectedIndex = 0;
             }
             
@@ -289,6 +303,12 @@ namespace xmlFactory
             btn_reset.Visible = true;
             grpbx_aircraftname_combobx.Visible = true;
             grpbx_aircraftname_new.Visible = false;
+        }
+
+        private void btn_about_Click(object sender, EventArgs e)
+        {
+            MsgBox.Show("Build with Jetbrains Rider\rhttps://www.jetbrains.com/rider/", "About", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
     }
 }

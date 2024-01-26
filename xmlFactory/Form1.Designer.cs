@@ -49,6 +49,9 @@ namespace xmlFactory
             this.grpbx_aircraftname_new = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btn_reset = new System.Windows.Forms.Button();
+            this.rchtxbx_xmlfile_output = new System.Windows.Forms.RichTextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btn_about = new System.Windows.Forms.Button();
             this.grpbx_aircraftname_combobx.SuspendLayout();
             this.grpbx_aircraftname_new.SuspendLayout();
             this.SuspendLayout();
@@ -59,6 +62,7 @@ namespace xmlFactory
             this.cmbobx_aircraftName.Location = new System.Drawing.Point(168, 20);
             this.cmbobx_aircraftName.Name = "cmbobx_aircraftName";
             this.cmbobx_aircraftName.Size = new System.Drawing.Size(315, 28);
+            this.cmbobx_aircraftName.Sorted = true;
             this.cmbobx_aircraftName.TabIndex = 1;
             this.cmbobx_aircraftName.SelectedValueChanged += new System.EventHandler(this.cmbobx_aircraftName_SelectedValueChanged);
             // 
@@ -137,7 +141,7 @@ namespace xmlFactory
             // 
             // btn_exit
             // 
-            this.btn_exit.Location = new System.Drawing.Point(482, 249);
+            this.btn_exit.Location = new System.Drawing.Point(520, 246);
             this.btn_exit.Name = "btn_exit";
             this.btn_exit.Size = new System.Drawing.Size(101, 38);
             this.btn_exit.TabIndex = 13;
@@ -147,7 +151,7 @@ namespace xmlFactory
             // 
             // btn_add
             // 
-            this.btn_add.Location = new System.Drawing.Point(54, 249);
+            this.btn_add.Location = new System.Drawing.Point(92, 246);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(101, 38);
             this.btn_add.TabIndex = 14;
@@ -157,7 +161,7 @@ namespace xmlFactory
             // 
             // btn_update
             // 
-            this.btn_update.Location = new System.Drawing.Point(161, 249);
+            this.btn_update.Location = new System.Drawing.Point(199, 246);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(101, 38);
             this.btn_update.TabIndex = 15;
@@ -167,7 +171,7 @@ namespace xmlFactory
             // 
             // btn_delete
             // 
-            this.btn_delete.Location = new System.Drawing.Point(268, 249);
+            this.btn_delete.Location = new System.Drawing.Point(306, 246);
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.Size = new System.Drawing.Size(101, 38);
             this.btn_delete.TabIndex = 16;
@@ -215,7 +219,7 @@ namespace xmlFactory
             // 
             // btn_reset
             // 
-            this.btn_reset.Location = new System.Drawing.Point(375, 249);
+            this.btn_reset.Location = new System.Drawing.Point(413, 246);
             this.btn_reset.Name = "btn_reset";
             this.btn_reset.Size = new System.Drawing.Size(101, 38);
             this.btn_reset.TabIndex = 21;
@@ -223,13 +227,43 @@ namespace xmlFactory
             this.btn_reset.UseVisualStyleBackColor = true;
             this.btn_reset.Click += new System.EventHandler(this.btn_reset_Click);
             // 
+            // rchtxbx_xmlfile_output
+            // 
+            this.rchtxbx_xmlfile_output.Location = new System.Drawing.Point(9, 339);
+            this.rchtxbx_xmlfile_output.Name = "rchtxbx_xmlfile_output";
+            this.rchtxbx_xmlfile_output.ReadOnly = true;
+            this.rchtxbx_xmlfile_output.Size = new System.Drawing.Size(620, 507);
+            this.rchtxbx_xmlfile_output.TabIndex = 22;
+            this.rchtxbx_xmlfile_output.Text = "";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 316);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(115, 20);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "Data in xml file:";
+            // 
+            // btn_about
+            // 
+            this.btn_about.Location = new System.Drawing.Point(26, 246);
+            this.btn_about.Name = "btn_about";
+            this.btn_about.Size = new System.Drawing.Size(60, 38);
+            this.btn_about.TabIndex = 24;
+            this.btn_about.Text = "?";
+            this.btn_about.UseVisualStyleBackColor = true;
+            this.btn_about.Click += new System.EventHandler(this.btn_about_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(641, 321);
+            this.ClientSize = new System.Drawing.Size(641, 858);
+            this.Controls.Add(this.btn_about);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.rchtxbx_xmlfile_output);
             this.Controls.Add(this.btn_reset);
-            this.Controls.Add(this.grpbx_aircraftname_new);
             this.Controls.Add(this.grpbx_aircraftname_combobx);
             this.Controls.Add(this.btn_delete);
             this.Controls.Add(this.btn_update);
@@ -243,6 +277,7 @@ namespace xmlFactory
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtbx_AftCGLimit);
             this.Controls.Add(this.txtbx_AftMomentArm);
+            this.Controls.Add(this.grpbx_aircraftname_new);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -281,6 +316,9 @@ namespace xmlFactory
         private System.Windows.Forms.GroupBox grpbx_aircraftname_new;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btn_reset;
+        private System.Windows.Forms.RichTextBox rchtxbx_xmlfile_output;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btn_about;
     }
 }
 
