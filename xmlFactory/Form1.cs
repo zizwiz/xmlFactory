@@ -250,33 +250,32 @@ namespace xmlFactory
 
         private void btn_update_Click(object sender, EventArgs e)
         {
-            // Get hold of the data because we will delete this node next
-            string myAircraftName = cmbobx_aircraftName.Text;
-            string AftMomentArm = txtbx_AftMomentArm.Text;
-            string FwdMomentArm = txtbx_FwdMomentArm.Text;
-            string AftCGLimit = txtbx_AftCGLimit.Text;
-            string FwdCGLimit = txtbx_FwdCGLimit.Text;
+           XmlDocument doc = new XmlDocument();
+            doc.Load("data.xml");
 
-            if (DeleteData(myAircraftName)) //Delete the node
+            XmlNode node = doc.SelectSingleNode("//aircraft_info[aircraft_name ='" + cmbobx_aircraftName.Text + "']");
+
+            // if found....
+            if (node != null)
             {
-                //Re-add the node with stored information
-                XDocument doc = XDocument.Load("data.xml");
-                XElement root = new XElement("aircraft_info");
+                string aircraft = cmbobx_aircraftName.Text;
 
-                root.Add(new XElement("aircraft_name", myAircraftName));
-                root.Add(new XElement("AftMomentArm", AftMomentArm));
-                root.Add(new XElement("FwdMomentArm", FwdMomentArm));
-                root.Add(new XElement("AftCGLimit", AftCGLimit));
-                root.Add(new XElement("FwdCGLimit", FwdCGLimit));
+                node["aircraft_name"].InnerText = aircraft;
+                node["AftMomentArm"].InnerText = txtbx_AftMomentArm.Text;
+                node["FwdMomentArm"].InnerText = txtbx_FwdMomentArm.Text;
+                node["AftCGLimit"].InnerText = txtbx_AftCGLimit.Text;
+                node["FwdCGLimit"].InnerText = txtbx_FwdCGLimit.Text;
 
-                doc.Element("compliance_data").Add(root);
                 doc.Save("data.xml");
 
-                PopulateComplianceDataCmboBx(myAircraftName); //rebuild the combobox
+                cmbobx_aircraftName.Items.Clear();
+                PopulateComplianceDataCmboBx(cmbobx_aircraftName.Text); //rebuild the combobox
+                cmbobx_aircraftName.SelectedItem = aircraft;
 
-                cmbobx_aircraftName.SelectedIndex = cmbobx_aircraftName.Items.Count - 1;
-
+                LoadxmlDatatoRchtxtbx(); //load the xml file data to richtextbox
             }
+
+            
         }
 
         private void btn_reset_Click(object sender, EventArgs e)
